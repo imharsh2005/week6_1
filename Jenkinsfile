@@ -1,16 +1,16 @@
 pipeline {
 agent {
-kubernetes {
-yaml '''
-spec:
-containers:
-- name: gradle
-image: gradle:6.3-jdk14 
-'''
+ kubernetes {
+   yaml '''
+        spec:
+        containers:
+          - name: gradle
+            image: gradle:6.3-jdk14 
+        '''
+     }
 }
 triggers {
     githubPush()
-   }
 }
 stages {
 stage('debug') {
