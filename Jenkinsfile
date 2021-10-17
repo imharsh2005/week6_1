@@ -8,6 +8,9 @@ containers:
 image: gradle:6.3-jdk14 
 '''
 }
+triggers {
+    githubPush()
+   }
 }
 stages {
 stage('debug') {
