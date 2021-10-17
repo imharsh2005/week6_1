@@ -37,9 +37,13 @@ pipeline {
    } 
    steps { 
    sh '''
-      pwd 
+      pwd
+      ls -la
       cat build.gradle 
+      chmod +x gradlew
+      ./gradlew test
       sed -i 's/minimum = 0.2/minimum = 0.1/g' build.gradle
+      cat build.gradle
       ./gradlew jacocoTestCoverageVerification 
       ./gradlew jacocoTestReport
       '''
