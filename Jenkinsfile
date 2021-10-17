@@ -36,6 +36,18 @@ pipeline {
     }
    } 
    steps { 
+   sh '''
+      pwd 
+      cat build.gradle 
+      sed -i 's/minimum = 0.2/minimum = 0.1/g' build.gradle
+      ./gradlew jacocoTestCoverageVerification 
+      ./gradlew jacocoTestReport
+      '''
+      publishHTML(target: [
+                    reportDir: 'build/reports/jacoco/test/html',
+		    reportFiles: 'index.html',
+		    reportName: "JaCoCo Report"])
+
      echo "I am a master branch"
     }
   }
